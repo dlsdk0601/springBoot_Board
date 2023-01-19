@@ -2,10 +2,7 @@ package org.zerock.springboot_board.enitty;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Builder
@@ -24,4 +21,6 @@ public class Board {
     private String content;
 
     // TODO :: 작성자도 나중에 추가
+    @ManyToOne
+    private Member writer;
 }

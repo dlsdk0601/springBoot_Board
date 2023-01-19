@@ -20,7 +20,6 @@ public class Board {
 
     private String content;
 
-    // TODO :: 작성자도 나중에 추가
     @ManyToOne
     private Member writer;
 }

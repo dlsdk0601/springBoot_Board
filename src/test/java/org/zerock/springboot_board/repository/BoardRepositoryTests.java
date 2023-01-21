@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.zerock.springboot_board.enitty.Board;
 import org.zerock.springboot_board.enitty.Member;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -32,6 +33,7 @@ public class BoardRepositoryTests {
         });
     }
 
+    @Transactional // 해당 메서드를 전부 하나의 transaction 으로 처리하자
     @Test
     public void testRead1(){
 

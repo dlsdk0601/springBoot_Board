@@ -25,3 +25,6 @@ public class BoardDTO {
 
     private int replyCount;
 }
+
+// BoardDTO class 와 Board entity Class 가 다른 점은 Member 를 참조하는 대신에
+// 화면에서 필요한 작성자 이메일, 작성자 이름으로 처리한다는 점이다

@@ -1,8 +1,7 @@
 package org.zerock.springboot_board.service;
 
-import org.zerock.springboot_board.dto.BoardDTO;
-import org.zerock.springboot_board.dto.PageRequestDTO;
 import org.zerock.springboot_board.dto.PageResultDTO;
+import org.zerock.springboot_board.dto.PageRequestDTO;
 import org.zerock.springboot_board.enitty.Board;
 import org.zerock.springboot_board.enitty.Member;
 
@@ -10,7 +9,7 @@ public interface BoardService {
 
     Long register(BoardDTO dto);
 
-    PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO);
+    PageResultDTO<BoardDTO, Object[]> getList(PageRequestDto pageRequestDTO);
 
     default Board dtoToEntity(BoardDTO dto){
 
@@ -30,7 +29,7 @@ public interface BoardService {
     // BoardService 인터페이스에 추가하는 entityToDTO()
     default BoardDTO entityToDTO(Board board, Member member, Long replyCount){
 
-        BoardDTO boardDTO = BoardDTO.builder()
+        return BoardDTO.builder()
                 .bno(board.getBno())
                 .title(board.getTitle())
                 .content(board.getContent())
@@ -40,7 +39,5 @@ public interface BoardService {
                 .writerName(member.getName())
                 .replyCount(replyCount.intValue())
                 .build();
-
-        return boardDTO;
     }
 }

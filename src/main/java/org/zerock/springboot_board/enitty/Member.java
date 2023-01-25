@@ -2,14 +2,13 @@ package org.zerock.springboot_board.enitty;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
 @ToString
 public class Member extends BaseEntity{
 

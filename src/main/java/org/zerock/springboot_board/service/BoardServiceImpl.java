@@ -41,7 +41,6 @@ public class BoardServiceImpl implements BoardService{
 
         Page<Object[]> result = repository.getBoardWithReplyCount(
                 pageRequestDTO.getPageable(Sort.by("bno").descending()));
-        )
 
         return new PageResultDTO<>(result, fn);
     }

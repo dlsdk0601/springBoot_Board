@@ -69,6 +69,7 @@ public class BoardServiceImpl implements BoardService{
         repository.deleteById(bno);
     }
 
+    @Transactional
     @Override
     public void modify(BoardDTO boardDTO){
         // 책에서는 modify 는 findById 를 이용하는 대신에 필요한 순간까지 로딩을 지연하는 방식인 getOne를 이용한다고 나와있지만,

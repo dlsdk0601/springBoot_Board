@@ -44,4 +44,6 @@ public interface BoardService {
     }
 
     PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO);
+
+    BoardDTO get(Long bno);
 }

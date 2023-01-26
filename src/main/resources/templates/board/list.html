@@ -39,7 +39,12 @@
 
     <ul class="pagination h-100 justify-content-center align-items-center">
       <li class="page-item" th:if="${result.prev}">
-        <a th:href="@{/guestbook/list(page= ${result.start -1}, type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}" class="page-link" tabindex="-1">
+        <a th:href="@{/board/list(page= ${result.start -1},
+        type=${pageRequestDTO.type},
+        keyword=${pageRequestDTO.keyword})}"
+           class="page-link"
+           tabindex="-1"
+        >
           Previous
         </a>
       </li>
@@ -47,10 +52,10 @@
         th:class="'page-item' + ${result.page == page ? 'active' : ''}"
         th:each="page : ${result.pageList}"
       >
-        <a th:href="@{/guestbook/list(page = ${page}, type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}" class="page-link">[[${page}]]</a>
+        <a th:href="@{/board/list(page = ${page}, type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}" class="page-link">[[${page}]]</a>
       </li>
       <li class="page-item" th:if="${result.next}">
-        <a th:href="@{/guestbook/list(page = ${result.end + 1}, type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}" class="page-link">Next</a>
+        <a th:href="@{/board/list(page = ${result.end + 1}, type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}" class="page-link">Next</a>
       </li>
     </ul>
 

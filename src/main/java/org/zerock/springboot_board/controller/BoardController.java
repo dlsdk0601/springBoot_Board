@@ -58,4 +58,31 @@ public class BoardController {
 
         model.addAttribute("dto", boardDTO);
     }
+
+    @PostMapping("/remove")
+    public String remove(Long bno, RedirectAttributes redirectAttributes){
+        log.info("bno : " + bno);
+
+        boardService.removeWithReplies(bno);
+
+        redirectAttributes.addFlashAttribute("msg", bno);
+
+        return "redirect:/board/list";
+    }
+
+    @PostMapping("modify")
+    public String modify(BoardDTO dto, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, RedirectAttributes redirectAttributes){
+        log.info("post modify :::::::::::::::::::::::");
+        log.info("dto : " + dto);
+
+        boardService.modify(dto);
+
+        redirectAttributes.addFlashAttribute("page", requestDTO.getPage());
+        redirectAttributes.addFlashAttribute("type", requestDTO.getType());
+        redirectAttributes.addFlashAttribute("keyword", requestDTO.getKeyword());
+
+        redirectAttributes.addAttribute("bno", dto.getBno());
+
+        return "redirect:/board/read";
+    }
 }

@@ -10,6 +10,12 @@ public interface BoardService {
 
     Long register(BoardDTO dto);
 
+    PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO);
+
+    BoardDTO get(Long bno);
+
+    void removeWithReplies(Long bno);
+
     default Board dtoToEntity(BoardDTO dto){
 
         Member member = Member.builder()
@@ -42,8 +48,4 @@ public interface BoardService {
 
         return boardDTO;
     }
-
-    PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO);
-
-    BoardDTO get(Long bno);
 }

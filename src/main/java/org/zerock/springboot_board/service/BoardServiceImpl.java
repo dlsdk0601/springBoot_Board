@@ -11,7 +11,9 @@ import org.zerock.springboot_board.dto.PageResultDTO;
 import org.zerock.springboot_board.enitty.Board;
 import org.zerock.springboot_board.enitty.Member;
 import org.zerock.springboot_board.repository.BoardRepository;
+import org.zerock.springboot_board.repository.ReplyRepository;
 
+import javax.transaction.Transactional;
 import java.util.function.Function;
 
 @Service
@@ -20,6 +22,8 @@ import java.util.function.Function;
 public class BoardServiceImpl implements BoardService{
 
     private final BoardRepository repository;
+
+    private final ReplyRepository replyRepository;
 
     @Override
     public Long register(BoardDTO dto){
@@ -52,5 +56,16 @@ public class BoardServiceImpl implements BoardService{
         Object[] arr = (Object[]) result;
 
         return entityToDTO((Board) arr[0], (Member) arr[1], (Long) arr[2]);
+    }
+
+    @Transactional
+    @Override
+    public void removeWithReplies(Long bno){
+        // 삭제 기능
+        // 트랜잭션 추가
+
+        replyRepository.deleteByBno(bno);
+
+        repository.deleteById(bno);
     }
 }

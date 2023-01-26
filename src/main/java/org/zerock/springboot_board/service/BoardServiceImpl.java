@@ -68,4 +68,16 @@ public class BoardServiceImpl implements BoardService{
 
         repository.deleteById(bno);
     }
+
+    @Override
+    public void modify(BoardDTO boardDTO){
+        // 책에서는 modify 는 findById 를 이용하는 대신에 필요한 순간까지 로딩을 지연하는 방식인 getOne를 이용한다고 나와있지만,
+        // 해당 메서드는 드랍 된거같아서 getReferenceById 로 대체
+        Board board = repository.getReferenceById(boardDTO.getBno());
+
+        board.changeTitle(boardDTO.getTitle());
+        board.changeContent(boardDTO.getContent());
+
+        repository.save(board);
+    }
 }

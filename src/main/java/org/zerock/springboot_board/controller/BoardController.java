@@ -70,7 +70,7 @@ public class BoardController {
         return "redirect:/board/list";
     }
 
-    @PostMapping("modify")
+    @PostMapping("/modify")
     public String modify(BoardDTO dto, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, RedirectAttributes redirectAttributes){
         log.info("post modify :::::::::::::::::::::::");
         log.info("dto : " + dto);

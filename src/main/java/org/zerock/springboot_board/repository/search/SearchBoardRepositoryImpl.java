@@ -2,8 +2,9 @@ package org.zerock.springboot_board.repository.search;
 
 import com.querydsl.core.Tuple;
 import com.querydsl.jpa.JPQLQuery;
-import jdk.jfr.MemoryAddress;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.zerock.springboot_board.enitty.Board;
 import org.zerock.springboot_board.enitty.QBoard;
@@ -43,6 +44,14 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
         log.info("-------------------------------");
 
         List<Tuple> result = tuple.fetch();
+        return null;
+    }
+
+    @Override
+    public Page<Object[]> searchPage(String type, String keyword, Pageable pageable){
+
+        log.info("searchPage........");
+
         return null;
     }
 }

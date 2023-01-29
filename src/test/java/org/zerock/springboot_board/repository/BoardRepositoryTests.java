@@ -96,4 +96,12 @@ public class BoardRepositoryTests {
     public void testSearch1(){
         boardRepository.search1();
     }
+
+    @Test
+    public void testSearchPage(){
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending());
+
+        Page<Object[]> result = boardRepository.searchPage("t", "1", pageable);
+        // title 을 기준으로 "1"을 검색
+    }
 }

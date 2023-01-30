@@ -22,17 +22,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Log4j2
-public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport implements SearchBoardRepository{
+public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport implements SearchBoardRepository {
     // QuerydslRepositorySupport 클래스를 상속해야한다.
     // QuerydslRepositorySupport 는 생성자가 존재하므로 클래스 내에서
     // super 를 이용해서 호출해야한다.
 
-    public SearchBoardRepositoryImpl(){
+    public SearchBoardRepositoryImpl() {
         super(Board.class);
     }
 
     @Override
-    public Board search1(){
+    public Board search1() {
         log.info("search1...............");
 
         QBoard board = QBoard.board;
@@ -56,7 +56,7 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
     }
 
     @Override
-    public Page<Object[]> searchPage(String type, String keyword, Pageable pageable){
+    public Page<Object[]> searchPage(String type, String keyword, Pageable pageable) {
 
         log.info("searchPage........");
 
@@ -77,13 +77,13 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
 
         booleanBuilder.and(expression);
 
-        if(type != null){
+        if (type != null) {
             String[] typeArr = type.split("");
 
             BooleanBuilder conditionBuilder = new BooleanBuilder();
 
-            for(String t : typeArr){
-                switch (t){
+            for (String t : typeArr) {
+                switch (t) {
                     case "t":
                         conditionBuilder.or(board.title.contains(keyword));
                         break;
@@ -111,12 +111,11 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
             tuple.orderBy(new OrderSpecifier(direction, orderByExpression.get(prop)));
         });
 
-                tuple.groupBy(board);
+        tuple.groupBy(board);
 
-                //page 처리
+        //page 처리
         tuple.offset(pageable.getOffset());
         tuple.limit(pageable.getPageSize());
-
         List<Tuple> result = tuple.fetch();
 
         log.info(result);
